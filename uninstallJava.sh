@@ -7,7 +7,6 @@ if [ $(users | wc -l) -eq "1" ]; then
 		rm -rf /Library/PreferencePanes/JavaControlPanel.prefPane
 		rm -rf /Library/Java
 		rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
-		rm -rf /System/Library/Frameworks/JavaVM.framework
 		rm -rf /Library/LaunchAgents/com.oracle.java.Java-Updater.plist
 		rm -rf /Library/LaunchDaemons/com.oracle.java.Helper-Tool.plist
 		rm -rf /Library/Preferences/com.oracle.java.Helper-Tool.plist
@@ -15,9 +14,22 @@ if [ $(users | wc -l) -eq "1" ]; then
 		rm -rf /private/var/root/.oracle*
 		rm -rf /private/var/db/receipts/com.oracle*
 		rm -rf /private/var/root/Library/Preferences/com.oracle*
-		##!!!!!uncomment this line
+		
+		# Apple java folder
+		rm -rf /private/var/root/Library/Preferences/com.apple.java*
+		rm -rf /System/Library/LaunchAgents/com.apple.java*
+		rm -rf /Users/$ONEUSER/Library/Preferences/com.apple.java*
+		
+		# User java folder
+		rm -rf /Users/$ONEUSER/Library/Application\ Support/Java
+		rm -rf /Users/$ONEUSER/Library/Caches/com.oracle*
+		rm -rf /Users/$ONEUSER/Library/Preferences/com.oracle*
+		
+		## uncomment this line at one's own risk
+		# rm -rf /System/Library/Frameworks/JavaVM.framework*
 		# find /usr -xdev -lname */System/Library/Frameworks/JavaVM.framework* -exec rm -rf {} \;
-		##!!!!!OR 
+		
+		## this detail command output
 		# rm -rf /usr/bin/appletviewer
 		# rm -rf /usr/bin/apt
 		# rm -rf /usr/bin/extcheck
@@ -102,16 +114,6 @@ if [ $(users | wc -l) -eq "1" ]; then
 		# rm -rf /usr/share/man/man1/wsgen.1
 		# rm -rf /usr/share/man/man1/wsimport.1
 		# rm -rf /usr/share/man/man1/xjc.1
-
-		#User java folder
-		rm -rf /Users/$ONEUSER/Library/Application\ Support/Java
-		rm -rf /Users/$ONEUSER/Library/Caches/com.oracle*
-		rm -rf /Users/$ONEUSER/Library/Preferences/com.oracle*
-
-		#Apple java folder
-		rm -rf /private/var/root/Library/Preferences/com.apple.java*
-		rm -rf /System/Library/LaunchAgents/com.apple.java*
-		rm -rf /Users/$ONEUSER/Library/Preferences/com.apple.java
 	else 
-		echo "Java not uninstall in System two user"
+		echo "Java not uninstall in System two users"
 fi
