@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sudo su
 if [ $(users | wc -l) -eq "1" ]; then 
 		ONEUSER=$(users)
 		echo "This user $ONEUSER"
